@@ -24,4 +24,8 @@ public abstract class Entity {
     public void setIsBorrowed(boolean status) {
         this.isBorrowed = status;
     }
+
+    public String toString() {
+        return "Name: " + this.name + ", id: " + this.id;
+    }
 }
