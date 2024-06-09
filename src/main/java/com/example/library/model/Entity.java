@@ -7,10 +7,21 @@ public abstract class Entity {
     private boolean isBorrowed = false;
     private boolean borrowable = false;
 
-    public Entity(boolean borrowable, boolean isBorrowed, String id, String name) {
+    public Entity(String id, String name, boolean borrowable) {
         this.borrowable = borrowable;
-        this.isBorrowed = isBorrowed;
         this.id = id;
         this.name = name;
+    }
+
+    public boolean isBorrowable() {
+        return this.borrowable;
+    }
+
+    public boolean getIsBorrowed() {
+        return this.isBorrowed;
+    }
+
+    public void setIsBorrowed(boolean status) {
+        this.isBorrowed = status;
     }
 }
