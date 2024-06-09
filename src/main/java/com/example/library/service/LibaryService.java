@@ -47,7 +47,7 @@ public class LibaryService{
 
 
     public void addUser(String userName, String userId){
-       users.add(new User(userName, userId));
+        users.add(new User(userName, userId));
     }
 
     public boolean borrow(String userId, String EntityId, String remark) {
@@ -84,7 +84,7 @@ public class LibaryService{
     }
 
 
-    
+
 
 
 }
