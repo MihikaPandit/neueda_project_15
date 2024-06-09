@@ -13,10 +13,15 @@ public class LibaryService{
 
     private HashMap<String, TransactionRecord> transactions;
 
+    public LibaryService () {
+        this.transactions = new HashMap<>();
+    }
+
 
 
     public boolean addEntity(Entity entity) {
         items.add(entity);
+        System.out.println(entity + " added to the library");
         return true;
     }
 
@@ -47,8 +52,9 @@ public class LibaryService{
     }
 
 
-    public void addUser(String userName, String userId){
-        users.add(new User(userName, userId));
+    public void addUser(User user){
+        System.out.println("Added user: " + user);
+        users.add(user);
     }
 
     public boolean borrow(String userId, String EntityId, String remark) {
@@ -79,6 +85,7 @@ public class LibaryService{
         TransactionRecord transactionRecord = new TransactionRecord(user, entity, remark);
         entity.setIsBorrowed(true);
         transactions.put(entity.getId(), transactionRecord);
+        System.out.println(transactionRecord);
 
 
         return true;
@@ -106,6 +113,8 @@ public class LibaryService{
 
         TransactionRecord transactionRecord = new TransactionRecord(user, entity, remark);
         transactions.put(entity.getId(), transactionRecord);
+        System.out.println(transactionRecord);
+
 
         return true;
 
@@ -119,6 +128,7 @@ public class LibaryService{
         }
         if(!entity.getIsBorrowed()) {
             items.remove(entity);
+            System.out.println(entity + " removed form library");
             return true;
         }
 
