@@ -12,6 +12,7 @@ public class LibaryService{
     private List<User> users = new ArrayList<>();
 
     private HashMap<String, TransactionRecord> borrowedList;
+    private HashMap<String, TransactionRecord> returnList;
 
 
     public boolean addEntity(Entity entity) {
@@ -83,7 +84,33 @@ public class LibaryService{
         return true;
     }
 
+    public boolean returnEntity(String userId,String EntityID,String remark){
+        Entity entity = this.findById(EntityID);
 
+        if(entity==null){
+            return false;
+        }
+
+        if(!entity.getIsBorrowed()){
+            System.out.println("Entity is already present");
+            return false;
+        }
+        User user = findUserById(userId);
+
+        if (user == null) {
+            System.out.println("user not found");
+            return false;
+        }
+
+        entity.setIsBorrowed(false);
+
+        TransactionRecord transactionRecord = new TransactionRecord(user, entity, remark);
+        entity.setIsBorrowed(true);
+        borrowedList.put(entity.getId(), transactionRecord);
+
+        return true;
+
+    }
 
 
 
