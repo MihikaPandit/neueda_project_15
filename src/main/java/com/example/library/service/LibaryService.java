@@ -11,8 +11,8 @@ public class LibaryService{
     private List<Entity> items = new ArrayList<>();
     private List<User> users = new ArrayList<>();
 
-    private HashMap<String, TransactionRecord> borrowedList;
-    private HashMap<String, TransactionRecord> returnList;
+    private HashMap<String, TransactionRecord> transactions;
+
 
 
     public boolean addEntity(Entity entity) {
@@ -78,7 +78,7 @@ public class LibaryService{
 
         TransactionRecord transactionRecord = new TransactionRecord(user, entity, remark);
         entity.setIsBorrowed(true);
-        borrowedList.put(entity.getId(), transactionRecord);
+        transactions.put(entity.getId(), transactionRecord);
 
 
         return true;
@@ -105,7 +105,7 @@ public class LibaryService{
         entity.setIsBorrowed(false);
 
         TransactionRecord transactionRecord = new TransactionRecord(user, entity, remark);
-        returnList.put(entity.getId(), transactionRecord);
+        transactions.put(entity.getId(), transactionRecord);
 
         return true;
 
@@ -117,8 +117,13 @@ public class LibaryService{
             System.out.println("Entity not found");
             return false;
         }
-        items.remove(entity);
-        return true;
+        if(!entity.getIsBorrowed()) {
+            items.remove(entity);
+            return true;
+        }
+
+        System.out.println("Entity is Borrowed");
+        return false;
 
 
     }
