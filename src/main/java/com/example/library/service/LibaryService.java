@@ -105,13 +105,23 @@ public class LibaryService{
         entity.setIsBorrowed(false);
 
         TransactionRecord transactionRecord = new TransactionRecord(user, entity, remark);
-        entity.setIsBorrowed(true);
-        borrowedList.put(entity.getId(), transactionRecord);
+        returnList.put(entity.getId(), transactionRecord);
 
         return true;
 
     }
 
+    public boolean removeEntity(String EntituID){
+        Entity entity = this.findById(EntituID);
+        if(entity==null){
+            System.out.println("Entity not found");
+            return false;
+        }
+        items.remove(entity);
+        return true;
+
+
+    }
 
 
 }
