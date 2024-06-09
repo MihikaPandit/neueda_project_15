@@ -28,4 +28,12 @@ public abstract class Entity {
     public String toString() {
         return "Name: " + this.name + ", id: " + this.id;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getId() {
+        return this.id;
+    }
 }
