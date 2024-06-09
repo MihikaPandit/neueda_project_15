@@ -15,7 +15,23 @@ public class LibaryService{
         items.add(entity);
         return true;
     }
-    
+
+    public Entity findById(String id) {
+        for (Entity entity : this.items) {
+            if (id.equals(entity.getId())) {
+                return entity;
+            }
+        }
+
+        return null;
+    }
+
+    public void viewInfo(String id) {
+        Entity entity = findById(id);
+        System.out.println(entity);
+    }
+
+
     public void addUser(String userName, String userId){
        users.add(new User(userName, userId));
     }
